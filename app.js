@@ -3,8 +3,16 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cookieSession = require("cookie-session");
+const secret = "secretCuisine123";
 
 const app = express();
+
+app.use(cookieSession({
+  name: "session",
+  keys: [secret],
+  maxAge: 24 * 60 * 60 * 1000,
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
